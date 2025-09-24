@@ -73,6 +73,7 @@ userSchema.methods.generateAccessToken = ()=>{
 
     return token;
 }
+
 userSchema.methods.generateRefreshToken = ()=>{
     const payload = {
         _id:this._id,
