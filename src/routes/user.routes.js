@@ -1,8 +1,23 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/user.controller.js";
+import { login, logout, registerUser } from "../controllers/user.controller.js";
+import { upload } from "../middelwears/multer.middelwear.js";
+import { verifyJWT } from "../middelwears/auth.middelwear.js";
 
 const router = Router();
 
-router.post("/register",registerUser);
+router.post("/register",upload.fields([
+    {
+        name:"avatar",
+        maxCount:1
+    },
+    {
+        name:"coverImage",
+        maxCount:1
+    }
+]),registerUser);
+
+router.post("/login",login);
+
+router.post("/logout",verifyJWT,logout);
 
 export default router;
