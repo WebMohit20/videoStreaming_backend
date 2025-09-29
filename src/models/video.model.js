@@ -11,11 +11,13 @@ const videoSchema = new Schema({
     },
     title:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     },
     description:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     },
     duration:{
         type:Number,
@@ -35,3 +37,7 @@ const videoSchema = new Schema({
     }
     
 })
+
+const Video = model("Video",videoSchema);
+
+export default Video;
