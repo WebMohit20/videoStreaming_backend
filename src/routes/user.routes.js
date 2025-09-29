@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { 
+import {
     changeCurrentPassword,
     getCurrentUser,
     login,
@@ -15,31 +15,67 @@ import { verifyJWT } from "../middelwears/auth.middelwear.js";
 
 const router = Router();
 
-router.post("/register",upload.fields([
-    {
-        name:"avatar",
-        maxCount:1
-    },
-    {
-        name:"coverImage",
-        maxCount:1
-    }
-]),registerUser);
+router.post(
+    "/register",
+    upload.fields([
+        {
+            name: "avatar",
+            maxCount: 1
+        },
+        {
+            name: "coverImage",
+            maxCount: 1
+        }
+    ]),
+    registerUser
+);
 
-router.post("/login",login);
+router.post(
+    "/login",
+    login
+);
 
-router.post("/logout",verifyJWT,logout);
+router.post(
+    "/logout",
+    verifyJWT,
+    logout
+);
 
-router.post("/refresh-token",refreshAccessToken);
+router.post(
+    "/refresh-token",
+    refreshAccessToken
+);
 
-router.post("/change-password",verifyJWT,changeCurrentPassword);
+router.post(
+    "/change-password",
+    verifyJWT,
+    changeCurrentPassword
+);
 
-router.get("/current-user",verifyJWT,getCurrentUser);
+router.get(
+    "/current-user",
+    verifyJWT,
+    getCurrentUser
+);
 
-router.patch("/update-account-details",verifyJWT,updateAccountDetails);
+router.patch(
+    "/update-account-details",
+    verifyJWT,
+    updateAccountDetails
+);
 
-router.patch("/update-avatar",verifyJWT,upload.single("avatar"),updateUserAvatar);
+router.patch(
+    "/update-avatar",
+    verifyJWT,
+    upload.single("avatar"),
+    updateUserAvatar
+);
 
-router.patch("/update-coverImage",verifyJWT,upload.single("coverImage"),updateUserCoverImage);
+router.patch(
+    "/update-coverImage",
+    verifyJWT,
+    upload.single("coverImage"),
+    updateUserCoverImage
+);
 
 export default router;
